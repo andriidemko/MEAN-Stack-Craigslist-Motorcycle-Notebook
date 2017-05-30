@@ -1,9 +1,26 @@
 var router = require('express').Router();
 var four0four = require('./utils/404')();
+var passport = require('passport');
 
 router.get('/listings', getAllMotorcycles);
 router.get('/listings/query', getSomeMotorcycles);
 router.get('/listings/detail', getaMotorcycle);
+
+router.get('/auth/github',
+  passport.authenticate('github', { scope: [ 'user:email' ] }));
+
+router.get('/auth/github/callback',
+  passport.authenticate('github', { failureRedirect: '/' }),
+  function(req, res) {
+    console.log(req.user.username);
+    res.redirect('/dashboard');
+  });
+
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
 router.get('/*', four0four.notFoundMiddleware);
 
 module.exports = router;

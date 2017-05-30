@@ -5,9 +5,9 @@
     .module('app.search')
     .controller('SearchController', SearchController);
 
-  SearchController.$inject = ['$q', '$scope', 'clservice', 'logger'];
+  SearchController.$inject = ['$q', 'loginservice', '$scope', 'clservice', 'logger'];
   /* @ngInject */
-  function SearchController($q, $scope, clservice, logger) {
+  function SearchController($q, loginservice, $scope, clservice, logger) {
     var vm = this;
     vm.news = {
       title: 'phillyMotoCraigslist',
@@ -25,13 +25,14 @@
       logger.info('Activated Search Listings View');
     }
 
-    $scope.assembleBike = function(url, price) {
+    $scope.assembleBike = function(url, price, cat) {
       vm.detail = {};
       $('#detailModal').modal({
         show: true
       });
       return clservice.getPost(url).then(function(data) {
         vm.detail = data;
+        vm.detail.category = cat;
         vm.detail.price = price;
         return vm.detail;
       });

@@ -5,9 +5,9 @@
     .module('app.dashboard')
     .controller('DashboardController', DashboardController);
 
-  DashboardController.$inject = ['$q', '$scope', 'clservice', 'logger'];
+  DashboardController.$inject = ['$q', 'loginservice', '$scope', 'clservice', 'logger'];
   /* @ngInject */
-  function DashboardController($q, $scope, clservice, logger) {
+  function DashboardController($q, loginservice, $scope, clservice, logger) {
     var vm = this;
     vm.news = {
       title: 'phillyMotoCraigslist',
@@ -26,13 +26,14 @@
       });
     }
 
-    $scope.assembleBike = function(url, price) {
+    $scope.assembleBike = function(url, price, cat) {
       vm.detail = {};
       $('#detailModal').modal({
         show: true
       });
       return clservice.getPost(url).then(function(data) {
         vm.detail = data;
+        vm.detail.category = cat;
         vm.detail.price = price;
         return vm.detail;
       });

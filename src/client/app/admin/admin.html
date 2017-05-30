@@ -4,9 +4,17 @@
       <div class="row">
         <div class="widget wviolet">
           <div ht-widget-header title="{{vm.title}}"></div>
-          <div class="widget-content user">
-            <h3>TODO: Implement Your Features</h3>
-          </div>
+            <div class="widget-content text-center text-info">
+              <div class="loginForm">
+                <form ng-submit="vm.goLogin()" >
+                 <formly-form model="vm.login" fields="vm.loginFields" form="vm.loginForm">
+                   <button type="submit" class="btn btn-primary">Login</button>
+                 </formly-form>
+               </form>
+               Login with <a href="/api/auth/github" target="_self">Github</a>.
+               <!-- Login with <a href="/api/auth/google" target="_self">Google</a>. -->
+              </div>
+            </div>
           <div class="widget-foot">
             <div class="clearfix"></div>
           </div>

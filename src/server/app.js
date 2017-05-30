@@ -2,20 +2,48 @@
 'use strict';
 
 require('dotenv').config();
-console.log(process.env.SAMPLE + ' <-- ENV file loaded.');
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+// var mongoose = require('mongoose');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var passport = require('passport');
+var session = require('express-session');
+var GitHubStrategy = require('passport-github2').Strategy;
 var port = process.env.PORT || 8001;
 var four0four = require('./utils/404')();
 var environment = process.env.NODE_ENV;
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+passport.use(new GitHubStrategy({
+  clientID: process.env.GITHUB_CLIENT_ID,
+  clientSecret: process.env.GITHUB_CLIENT_SECRET,
+  callbackURL: process.env.GITHUB_CALLBACK_URL
+},
+function(accessToken, refreshToken, profile, done) {
+  process.nextTick(function () {
+    return done(null, profile);
+  });
+}));
 
 app.use(favicon(__dirname + '/favicon.ico'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
+
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+// Initialize Passport!  Also use passport.session() middleware, to support
+// persistent login sessions (recommended).
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/api', require('./routes'));
 

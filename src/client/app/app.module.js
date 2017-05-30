@@ -7,7 +7,9 @@
     'app.admin',
     'app.dashboard',
     'app.search',
-    'app.layout'
+    'app.layout',
+    'formly',
+    'formlyBootstrap'
   ]);
 
 })();

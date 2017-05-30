@@ -19,8 +19,8 @@
                 <tbody>
                   <tr ng-repeat="l in vm.listings">
                     <td>
-                      <a ng-show="vm.showURL(l.category)" ng-click="assembleBike(l.url, l.price)"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                      <a ng-hide="vm.showURL(l.category)" ng-click="assembleBike(l.url.slice(35), l.price)"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                      <a ng-show="vm.showURL(l.category)" ng-click="assembleBike(l.url, l.price, l.category)"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                      <a ng-hide="vm.showURL(l.category)" ng-click="assembleBike(l.url.slice(35), l.price, l.category)"><i class="fa fa-eye" aria-hidden="true"></i></a>
                     </td>
                     <td>{{l.title}}</td>
                     <td>
@@ -61,7 +61,8 @@
           <table width="100%">
             <tr ng-show="vm.detail.pid != null">
               <th width="20%"><i class="fa fa-hashtag" aria-hidden="true"></i> ID</th>
-              <td> {{vm.detail.pid}}</td>
+              <td ng-show="vm.showURL(vm.detail.category)"> <a target="_blank" href="{{vm.detail.url}}">{{vm.detail.pid}} <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+              <td ng-hide="vm.showURL(vm.detail.category)"> <a target="_blank" href="https://{{vm.detail.category}}/mcy/{{vm.detail.pid}}.html">{{vm.detail.pid}} <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
             </tr>
             <tr ng-show="vm.detail.postedAt != null">
               <th width="20%"><i class="fa fa-clock-o" aria-hidden="true"></i> Posted</th>
@@ -69,7 +70,7 @@
             </tr>
             <tr ng-show="vm.detail.mapUrl != null">
               <th width="20%"><i class="fa fa-map-marker" aria-hidden="true"></i> Map</th>
-              <td><a href="{{vm.detail.mapUrl}}" target="_blank"> Google Maps Link</a></td>
+              <td><a href="{{vm.detail.mapUrl}}" target="_blank"> Google Maps Link <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
             </tr>
             <tr ng-show="vm.detail.price != null">
               <th width="20%"><i class="fa fa-usd" aria-hidden="true"></i> Price</th>
