@@ -5,9 +5,9 @@
     .module('app.search')
     .controller('SearchController', SearchController);
 
-  SearchController.$inject = ['$q', 'loginservice', '$scope', 'clservice', 'logger'];
+  SearchController.$inject = ['$q', '$scope', 'clservice', 'logger'];
   /* @ngInject */
-  function SearchController($q, loginservice, $scope, clservice, logger) {
+  function SearchController($q, $scope, clservice, logger) {
     var vm = this;
     vm.news = {
       title: 'phillyMotoCraigslist',

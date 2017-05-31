@@ -11,9 +11,13 @@
     <div class="pull-right navbar-logo">
       <ul class="nav navbar-nav pull-right">
         <li>
-          <a href="/admin">
-            <span ng-show="vm.userName.userName!=undefined"><i class="fa fa-user" aria-hidden="true"></i> {{vm.userName.userName}}</span>
-            <span ng-show="vm.userName.userName==undefined"><i class="fa fa-sign-in"></i> Login</span>
+          <a href="/api/logout" target="_self" ng-show="vm.userName!=undefined">
+            <i ng-if="vm.userName.indexOf('gh') == 0" class="fa fa-github" aria-hidden="true"></i>
+            <i ng-if="vm.userName.indexOf('go') == 0" class="fa fa-google" aria-hidden="true"></i>
+             Logout
+          </a>
+          <a href="/" ng-show="vm.userName==undefined">
+            <i class="fa fa-sign-in"></i> Login
           </a>
         </li>
       </ul>

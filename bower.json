@@ -28,8 +28,7 @@
     "angular-ui-router": "~0.4.2",
     "toastr": "~2.1.2",
     "angular-bootstrap": "~1.2.5",
-    "angular-formly": "^8.4.1",
-    "angular-formly-templates-bootstrap": "^6.3.2"
+    "ng-cookies": "^1.1.1"
   },
   "resolutions": {
     "angular": "~1.5.9"

@@ -8,8 +8,7 @@
     'app.dashboard',
     'app.search',
     'app.layout',
-    'formly',
-    'formlyBootstrap'
+    'ngCookie'
   ]);
 
 })();

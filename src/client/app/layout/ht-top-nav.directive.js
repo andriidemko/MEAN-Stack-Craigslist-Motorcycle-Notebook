@@ -18,12 +18,12 @@
       templateUrl: 'app/layout/ht-top-nav.html'
     };
 
-    TopNavController.$inject = ['$scope', 'loginservice'];
+    TopNavController.$inject = ['$scope', 'cookies'];
 
     /* @ngInject */
-    function TopNavController($scope, loginservice) {
+    function TopNavController($scope, cookies) {
       var vm = this;
-      vm.userName = loginservice.getUser();
+      vm.userName = cookies.get('authenticatedUser');
       $scope.isCollapsed = true;
     }
 

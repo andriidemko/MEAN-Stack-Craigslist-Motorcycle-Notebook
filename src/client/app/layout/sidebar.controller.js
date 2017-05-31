@@ -5,9 +5,9 @@
     .module('app.layout')
     .controller('SidebarController', SidebarController);
 
-  SidebarController.$inject = ['$state', 'routerHelper', 'loginservice'];
+  SidebarController.$inject = ['$state', 'routerHelper'];
   /* @ngInject */
-  function SidebarController($state, routerHelper, loginservice) {
+  function SidebarController($state, routerHelper) {
     var vm = this;
     var states = routerHelper.getStates();
     vm.isCurrent = isCurrent;

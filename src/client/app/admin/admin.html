@@ -5,15 +5,25 @@
         <div class="widget wviolet">
           <div ht-widget-header title="{{vm.title}}"></div>
             <div class="widget-content text-center text-info">
-              <div class="loginForm">
-                <form ng-submit="vm.goLogin()" >
-                 <formly-form model="vm.login" fields="vm.loginFields" form="vm.loginForm">
-                   <button type="submit" class="btn btn-primary">Login</button>
-                 </formly-form>
-               </form>
-               Login with <a href="/api/auth/github" target="_self">Github</a>.
-               <!-- Login with <a href="/api/auth/google" target="_self">Google</a>. -->
-              </div>
+              <!-- GitHub Stuff -->
+              <p ng-hide="vm.userName.indexOf('go') == 0">
+                <span ng-show="vm.userName==undefined">
+                  <a class="btn btn-default" href="/api/auth/github" target="_self" role="button">Authenticate with GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                </span>
+                <span ng-show="vm.userName!=undefined">
+                  <a class="btn btn-default" href="/api/logout" target="_self" role="button">Currently Authenticated with GitHub <i class="fa fa-github" aria-hidden="true"></i> Logout?</a>
+                </span>
+              </p>
+              <p ng-hide="vm.userName!=undefined">&nbsp;</p>
+              <!-- Google Stuff -->
+              <p ng-hide="vm.userName.indexOf('gh') == 0">
+                <span ng-show="vm.userName==undefined">
+                  <a class="btn btn-danger" href="/api/auth/google" target="_self" role="button">Authenticate with Google <i class="fa fa-google" aria-hidden="true"></i></a>
+                </span>
+                <span ng-show="vm.userName!=undefined">
+                  <a class="btn btn-danger" href="/api/logout" target="_self" role="button">Currently Authenticated with Google <i class="fa fa-google" aria-hidden="true"></i> Logout?</a>
+                </span>
+              </p>
             </div>
           <div class="widget-foot">
             <div class="clearfix"></div>

@@ -5,12 +5,13 @@ require('dotenv').config();
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-// var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var passport = require('passport');
 var session = require('express-session');
 var GitHubStrategy = require('passport-github2').Strategy;
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var port = process.env.PORT || 8001;
 var four0four = require('./utils/404')();
 var environment = process.env.NODE_ENV;
@@ -34,14 +35,24 @@ function(accessToken, refreshToken, profile, done) {
   });
 }));
 
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.GOOGLE_CALLBACK_URL
+},
+function(request, accessToken, refreshToken, profile, done) {
+  process.nextTick(function () {
+    return done(null, profile);
+  });
+  }
+));
+
 app.use(favicon(__dirname + '/favicon.ico'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
 
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
-// Initialize Passport!  Also use passport.session() middleware, to support
-// persistent login sessions (recommended).
 app.use(passport.initialize());
 app.use(passport.session());
 

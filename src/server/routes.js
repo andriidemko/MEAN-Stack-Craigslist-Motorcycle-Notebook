@@ -6,19 +6,32 @@ router.get('/listings', getAllMotorcycles);
 router.get('/listings/query', getSomeMotorcycles);
 router.get('/listings/detail', getaMotorcycle);
 
+// GitHub Authentication
 router.get('/auth/github',
   passport.authenticate('github', { scope: [ 'user:email' ] }));
-
 router.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
   function(req, res) {
-    console.log(req.user.username);
+    var detailedUser = 'gh-' + req.user.username;
+    res.cookie('authenticatedUser', detailedUser, { expires: new Date(Date.now() + 100000000)});
     res.redirect('/dashboard');
   });
 
+// Google Authentication
+router.get('/auth/google',
+  passport.authenticate('google', { scope: [ 'profile' ] }));
+router.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  function(req, res) {
+    var detailedUser = 'go-' + req.user.id;
+    res.cookie('authenticatedUser', detailedUser, { expires: new Date(Date.now() + 100000000)});
+    res.redirect('/dashboard');
+  });
+
+// Logout
 router.get('/logout', function(req, res){
   req.logout();
-  res.redirect('/');
+  res.clearCookie('authenticatedUser').redirect('/');
 });
 
 router.get('/*', four0four.notFoundMiddleware);
