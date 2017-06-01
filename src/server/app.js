@@ -16,6 +16,14 @@ var port = process.env.PORT || 8001;
 var four0four = require('./utils/404')();
 var environment = process.env.NODE_ENV;
 
+mongoose.connect('mongodb://localhost/craigslistMoto');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('We\'re connected to the DB!');
+});
+
 passport.serializeUser(function(user, done) {
   done(null, user);
 });

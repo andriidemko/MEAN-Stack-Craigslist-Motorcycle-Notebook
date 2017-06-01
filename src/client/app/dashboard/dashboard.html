@@ -80,7 +80,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" ng-click="vm.modalSubmit(vm.updateCat)" data-dismiss="modal">Save Post</button>
+          <button type="submit" class="btn btn-primary" ng-disabled="vm.userName==undefined" ng-click="vm.modalSubmit(vm.updateCat)" data-dismiss="modal">Save Post</button>
         </div>
       </div>
     </div>

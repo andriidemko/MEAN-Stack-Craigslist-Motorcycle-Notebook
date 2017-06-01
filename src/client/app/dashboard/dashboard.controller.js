@@ -5,9 +5,9 @@
     .module('app.dashboard')
     .controller('DashboardController', DashboardController);
 
-  DashboardController.$inject = ['$q', '$scope', 'clservice', 'logger'];
+  DashboardController.$inject = ['$q', '$scope', 'clservice', 'cookies', 'logger'];
   /* @ngInject */
-  function DashboardController($q, $scope, clservice, logger) {
+  function DashboardController($q, $scope, clservice, cookies, logger) {
     var vm = this;
     vm.news = {
       title: 'phillyMotoCraigslist',
@@ -22,6 +22,7 @@
     function activate() {
       var promises = [getListings()];
       return $q.all(promises).then(function() {
+        vm.userName = cookies.get('authenticatedUser');
         logger.info('Activated New Listings View');
       });
     }

@@ -1,10 +1,22 @@
 var router = require('express').Router();
 var four0four = require('./utils/404')();
 var passport = require('passport');
+var Post = require('./data/postSchema');
+
+////////////// Craigslist Endpoints
 
 router.get('/listings', getAllMotorcycles);
 router.get('/listings/query', getSomeMotorcycles);
 router.get('/listings/detail', getaMotorcycle);
+
+////////////// CRUD Endpoints
+
+router.get('/posts', getAllPosts);
+router.get('/posts/:id', getaPost);
+router.post('/posts/detail', createaPost);
+router.delete('/posts/:id', deleteaPost);
+
+////////////// Authentication Endpoints
 
 // GitHub Authentication
 router.get('/auth/github',
@@ -38,7 +50,7 @@ router.get('/*', four0four.notFoundMiddleware);
 
 module.exports = router;
 
-//////////////
+////////////// Craigslist Functions
 
 function getAllMotorcycles(req, res, next) {
   var
@@ -100,3 +112,21 @@ function getaMotorcycle(req, res, next) {
       console.error(err);
     });
 }
+
+////////////// CRUD Functions
+
+function getAllPosts(req, res) {
+
+};
+
+function getaPost(req, res) {
+
+};
+
+function createaPost(req, res) {
+
+};
+
+function deleteaPost(req, res) {
+
+};

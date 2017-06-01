@@ -5,9 +5,9 @@
     .module('app.search')
     .controller('SearchController', SearchController);
 
-  SearchController.$inject = ['$q', '$scope', 'clservice', 'logger'];
+  SearchController.$inject = ['$q', '$scope', 'clservice', 'cookies', 'logger'];
   /* @ngInject */
-  function SearchController($q, $scope, clservice, logger) {
+  function SearchController($q, $scope, clservice, cookies, logger) {
     var vm = this;
     vm.news = {
       title: 'phillyMotoCraigslist',
@@ -22,6 +22,7 @@
     activate();
 
     function activate() {
+      vm.userName = cookies.get('authenticatedUser');
       logger.info('Activated Search Listings View');
     }
 
@@ -34,6 +35,7 @@
         vm.detail = data;
         vm.detail.category = cat;
         vm.detail.price = price;
+        console.log(vm.detail);
         return vm.detail;
       });
     }
