@@ -11,10 +11,10 @@ router.get('/listings/detail', getaMotorcycle);
 
 ////////////// CRUD Endpoints
 
-router.get('/posts', getAllPosts);
-router.get('/posts/:id', getaPost);
-router.post('/posts/detail', createaPost);
-router.delete('/posts/:id', deleteaPost);
+router.get('/posts/:user', getAllPosts);
+// router.get('/posts/:id', getaPost);
+// router.post('/posts/detail', createaPost);
+// router.delete('/posts/:id', deleteaPost);
 
 ////////////// Authentication Endpoints
 
@@ -36,6 +36,7 @@ router.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   function(req, res) {
     var detailedUser = 'go-' + req.user.id;
+    console.log(detailedUser);
     res.cookie('authenticatedUser', detailedUser, { expires: new Date(Date.now() + 100000000)});
     res.redirect('/dashboard');
   });
@@ -116,17 +117,21 @@ function getaMotorcycle(req, res, next) {
 ////////////// CRUD Functions
 
 function getAllPosts(req, res) {
-
+  var user = req.params.user;
+  Post.find({"authenticatedUser": user}, function(err, posts) {
+    if (err) throw err;
+    res.send(posts);
+  });
 };
 
-function getaPost(req, res) {
-
-};
-
-function createaPost(req, res) {
-
-};
-
-function deleteaPost(req, res) {
-
-};
+// function getaPost(req, res) {
+//
+// };
+//
+// function createaPost(req, res) {
+//
+// };
+//
+// function deleteaPost(req, res) {
+//
+// };

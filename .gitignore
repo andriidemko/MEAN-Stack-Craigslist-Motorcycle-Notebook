@@ -6,6 +6,7 @@ bower_components/
 # other
 .tmp
 report/
+seed*
 
 # Application specific files
 .env

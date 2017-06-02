@@ -7,6 +7,8 @@ var postSchema = new Schema({
   pid: String,
   title: String,
   description: String,
+  url: String,
+  category: String,
   images: String,
   mapUrl: String,
   price: String,

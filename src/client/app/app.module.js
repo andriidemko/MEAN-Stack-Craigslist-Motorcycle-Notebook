@@ -7,6 +7,7 @@
     'app.admin',
     'app.dashboard',
     'app.search',
+    'app.saved',
     'app.layout',
     'ngCookie'
   ]);
