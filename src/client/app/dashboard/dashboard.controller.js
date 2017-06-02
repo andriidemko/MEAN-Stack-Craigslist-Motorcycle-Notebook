@@ -5,9 +5,9 @@
     .module('app.dashboard')
     .controller('DashboardController', DashboardController);
 
-  DashboardController.$inject = ['$q', '$scope', 'clservice', 'cookies', 'logger'];
+  DashboardController.$inject = ['$q', '$http', '$scope', 'savedservice', 'clservice', 'cookies', 'logger'];
   /* @ngInject */
-  function DashboardController($q, $scope, clservice, cookies, logger) {
+  function DashboardController($q, $http, $scope, savedservice, clservice, cookies, logger) {
     var vm = this;
     vm.news = {
       title: 'phillyMotoCraigslist',
@@ -36,8 +36,14 @@
         vm.detail = data;
         vm.detail.category = cat;
         vm.detail.price = price;
+        vm.detail.authenticatedUser = vm.userName;
         return vm.detail;
       });
+    }
+
+    $scope.submitPost = function(obj) {
+      $http.post('/api/posts/save', obj);
+      logger.info('Saved Post.');
     }
 
     function getListings() {

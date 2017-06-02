@@ -5,9 +5,9 @@
     .module('app.search')
     .controller('SearchController', SearchController);
 
-  SearchController.$inject = ['$q', '$scope', 'clservice', 'cookies', 'logger'];
+  SearchController.$inject = ['$q', '$http', '$scope', 'clservice', 'cookies', 'logger'];
   /* @ngInject */
-  function SearchController($q, $scope, clservice, cookies, logger) {
+  function SearchController($q, $http, $scope, clservice, cookies, logger) {
     var vm = this;
     vm.news = {
       title: 'phillyMotoCraigslist',
@@ -35,9 +35,14 @@
         vm.detail = data;
         vm.detail.category = cat;
         vm.detail.price = price;
-        console.log(vm.detail);
+        vm.detail.authenticatedUser = vm.userName;
         return vm.detail;
       });
+    }
+
+    $scope.submitPost = function(obj) {
+      $http.post('/api/posts/save', obj);
+      logger.info('Saved Post.');
     }
 
     $scope.searchListings = function() {

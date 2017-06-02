@@ -9,11 +9,10 @@ var postSchema = new Schema({
   description: String,
   url: String,
   category: String,
-  images: String,
+  images: Array,
   mapUrl: String,
   price: String,
   postedAt: String,
-  createdAt: Date,
   authenticatedUser: String
 });
 

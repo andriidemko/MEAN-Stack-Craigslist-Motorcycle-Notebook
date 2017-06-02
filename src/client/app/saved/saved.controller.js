@@ -5,9 +5,9 @@
     .module('app.saved')
     .controller('SavedController', SavedController);
 
-  SavedController.$inject = ['$q', 'savedservice', '$scope', 'cookies', 'logger'];
+  SavedController.$inject = ['$q', '$http', 'savedservice', '$scope', 'cookies', 'logger'];
   /* @ngInject */
-  function SavedController($q, savedservice, $scope, cookies, logger) {
+  function SavedController($q, $http, savedservice, $scope, cookies, logger) {
     var vm = this;
     vm.news = {
       title: 'phillyMotoCraigslist',
@@ -42,6 +42,15 @@
         vm.listings = data;
         return vm.listings;
       });
+    }
+
+    $scope.deleteSaved = function(id) {
+      var r = confirm("Are you sure you want to permanently delete this saved post?");
+        if (r == true) {
+        $http.delete('/api/posts/delete/' + id);
+        logger.info('Deleted Post.');
+        getListings();
+      }
     }
 
   }

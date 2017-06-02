@@ -54,7 +54,7 @@
         </div>
         <div class="modal-body">
           <!-- Data Goes Here -->
-          <p><img src="{{vm.bike.images}}" class="img-thumbnail"></p>
+          <p><img src="{{vm.bike.images[0]}}" class="img-thumbnail"></p>
           <p ng-show="vm.bike.description != null"><i class="fa fa-info-circle" aria-hidden="true"></i> <b>Description</b></p>
           <p ng-show="vm.bike.description != null">{{vm.bike.description.slice(48)}}</p>
           <p>&nbsp;</p>
@@ -79,7 +79,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" ng-disabled="vm.userName==undefined" ng-click="vm.deleteSaved(vm._id)" data-dismiss="modal">Delete</button>
+          <button type="submit" class="btn btn-primary" ng-disabled="vm.userName==undefined" ng-click="deleteSaved(vm.bike._id)" data-dismiss="modal">Delete</button>
         </div>
       </div>
     </div>

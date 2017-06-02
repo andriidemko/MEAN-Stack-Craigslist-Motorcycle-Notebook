@@ -13,8 +13,8 @@ router.get('/listings/detail', getaMotorcycle);
 
 router.get('/posts/:user', getAllPosts);
 router.get('/posts/find/:id', getaPost);
-// router.post('/posts/detail', createaPost);
-// router.delete('/posts/:id', deleteaPost);
+router.post('/posts/save', createaPost);
+router.delete('/posts/delete/:id', deleteaPost);
 
 ////////////// Authentication Endpoints
 
@@ -131,10 +131,18 @@ function getaPost(req, res) {
   });
 };
 
-// function createaPost(req, res) {
-//
-// };
-//
-// function deleteaPost(req, res) {
-//
-// };
+function createaPost(req, res) {
+  var newPost = new Post(req.body);
+  newPost.save(function(err, createdPostObj) {
+    if (err) throw err;
+    res.send(createdPostObj);
+  });
+};
+
+function deleteaPost(req, res) {
+  var id = req.params.id;
+  Post.findByIdAndRemove(id, function(err, post) {
+    if (err) throw err;
+    res.send(post);
+  });
+};
