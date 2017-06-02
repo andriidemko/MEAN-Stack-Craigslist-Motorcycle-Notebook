@@ -14,6 +14,7 @@
       description: 'Hot Towel Angular is a SPA template for Angular developers.'
     };
     vm.listings = [];
+    vm.bike = {};
     vm.title = 'Saved Listings';
     vm.userName = cookies.get('authenticatedUser');
     activate();
@@ -25,19 +26,22 @@
       });
     }
 
-    function getListings() {
-      return savedservice.getListings(vm.userName).then(function(data) {
-        vm.listings = data;
-        console.log(vm.listings);
-        return vm.listings;
+    $scope.showBike = function(id) {
+      vm.bike = {};
+      $('#savedDetailModal').modal({
+        show: true
+      });
+      return savedservice.getPost(id).then(function(data) {
+        vm.bike = data[0];
+        return vm.bike;
       });
     }
 
-    vm.showURL = function(val) {
-      if(isNaN(val)) {
-        return false;
-      }
-      return true;
+    function getListings() {
+      return savedservice.getListings(vm.userName).then(function(data) {
+        vm.listings = data;
+        return vm.listings;
+      });
     }
 
   }

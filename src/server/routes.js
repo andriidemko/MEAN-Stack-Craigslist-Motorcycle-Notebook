@@ -12,7 +12,7 @@ router.get('/listings/detail', getaMotorcycle);
 ////////////// CRUD Endpoints
 
 router.get('/posts/:user', getAllPosts);
-// router.get('/posts/:id', getaPost);
+router.get('/posts/find/:id', getaPost);
 // router.post('/posts/detail', createaPost);
 // router.delete('/posts/:id', deleteaPost);
 
@@ -36,7 +36,6 @@ router.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   function(req, res) {
     var detailedUser = 'go-' + req.user.id;
-    console.log(detailedUser);
     res.cookie('authenticatedUser', detailedUser, { expires: new Date(Date.now() + 100000000)});
     res.redirect('/dashboard');
   });
@@ -124,10 +123,14 @@ function getAllPosts(req, res) {
   });
 };
 
-// function getaPost(req, res) {
-//
-// };
-//
+function getaPost(req, res) {
+  var id = req.params.id;
+  Post.find({"_id": id}, function(err, post) {
+    if (err) throw err;
+    res.send(post);
+  });
+};
+
 // function createaPost(req, res) {
 //
 // };

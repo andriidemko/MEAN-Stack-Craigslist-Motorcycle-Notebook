@@ -9,7 +9,8 @@
   /* @ngInject */
   function savedservice($http, $q, exception, logger) {
     var service = {
-      getListings: getListings
+      getListings: getListings,
+      getPost: getPost
     };
 
     return service;
@@ -26,6 +27,21 @@
 
       function fail(e) {
         return exception.catcher('XHR Failed for getListings')(e);
+      }
+    }
+
+    // Get Specific Post
+    function getPost(id) {
+      return $http.get('/api/posts/find/' + id)
+        .then(success)
+        .catch(fail);
+
+      function success(response) {
+        return response.data;
+      }
+
+      function fail(e) {
+        return exception.catcher('XHR Failed for get detail post')(e);
       }
     }
 
