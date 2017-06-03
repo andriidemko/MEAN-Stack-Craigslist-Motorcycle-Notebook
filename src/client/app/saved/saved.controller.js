@@ -53,5 +53,11 @@
       }
     }
 
+    $scope.updateNotes = function(id, note) {
+      var fixedNote = {"note":note};
+      $http.put('/api/posts/update/' + id, fixedNote);
+      logger.info('Saved Post Note.');
+    }
+
   }
 })();

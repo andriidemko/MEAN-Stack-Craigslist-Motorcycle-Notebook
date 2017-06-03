@@ -13,6 +13,7 @@ var postSchema = new Schema({
   mapUrl: String,
   price: String,
   postedAt: String,
+  notes: String,
   authenticatedUser: String
 });
 

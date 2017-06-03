@@ -1,6 +1,8 @@
 var router = require('express').Router();
 var four0four = require('./utils/404')();
 var passport = require('passport');
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
 var Post = require('./data/postSchema');
 
 ////////////// Craigslist Endpoints
@@ -11,9 +13,10 @@ router.get('/listings/detail', getaMotorcycle);
 
 ////////////// CRUD Endpoints
 
-router.get('/posts/:user', getAllPosts);
-router.get('/posts/find/:id', getaPost);
 router.post('/posts/save', createaPost);
+router.get('/posts/find/:id', getaPost);
+router.get('/posts/:user', getAllPosts);
+router.put('/posts/update/:id', updateSaved);
 router.delete('/posts/delete/:id', deleteaPost);
 
 ////////////// Authentication Endpoints
@@ -144,5 +147,11 @@ function deleteaPost(req, res) {
   Post.findByIdAndRemove(id, function(err, post) {
     if (err) throw err;
     res.send(post);
+  });
+};
+
+function updateSaved(req, res) {
+  Post.update({ _id: req.params.id }, { $set: { notes: req.body.note }}, function(err) {
+    if (err) throw err;
   });
 };

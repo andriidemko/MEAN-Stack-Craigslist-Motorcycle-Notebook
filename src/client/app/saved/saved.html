@@ -58,6 +58,7 @@
           <p ng-show="vm.bike.description != null"><i class="fa fa-info-circle" aria-hidden="true"></i> <b>Description</b></p>
           <p ng-show="vm.bike.description != null">{{vm.bike.description.slice(48)}}</p>
           <p>&nbsp;</p>
+          <pre>{{vm.bike}}</pre>
           <table width="100%">
             <tr ng-show="vm.bike.pid != null">
               <th width="20%"><i class="fa fa-hashtag" aria-hidden="true"></i> ID</th>
@@ -75,11 +76,21 @@
               <th width="20%"><i class="fa fa-usd" aria-hidden="true"></i> Price</th>
               <td> {{vm.bike.price}}</td>
             </tr>
+            <tr>
+              <td colspan="2">
+                <p>&nbsp;</p>
+                <div class="form-group">
+                  <label for="notesArea">Notes</label>
+                  <textarea ng-model="vm.bike.notes" class="form-control" id="notesArea" rows="3" style="width:100%; max-width:100%"></textarea>
+              </div>
+              </td>
+            </tr>
           </table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" ng-disabled="vm.userName==undefined" ng-click="deleteSaved(vm.bike._id)" data-dismiss="modal">Delete</button>
+          <button type="submit" class="btn btn-primary" ng-disabled="vm.userName==undefined" ng-click="updateNotes(vm.bike._id, vm.bike.notes)" data-dismiss="modal">Save</button>
+          <button type="submit" class="btn btn-danger" ng-disabled="vm.userName==undefined" ng-click="deleteSaved(vm.bike._id)" data-dismiss="modal">Delete</button>
         </div>
       </div>
     </div>
