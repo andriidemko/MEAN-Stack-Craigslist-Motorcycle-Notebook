@@ -1,8 +1,6 @@
 var router = require('express').Router();
 var four0four = require('./utils/404')();
 var passport = require('passport');
-var bodyParser = require('body-parser');
-var jsonParser = bodyParser.json();
 var Post = require('./data/postSchema');
 
 ////////////// Craigslist Endpoints
@@ -10,6 +8,7 @@ var Post = require('./data/postSchema');
 router.get('/listings', getAllMotorcycles);
 router.get('/listings/query', getSomeMotorcycles);
 router.get('/listings/detail', getaMotorcycle);
+router.get('/map', getMapUrl);
 
 ////////////// CRUD Endpoints
 
@@ -116,6 +115,11 @@ function getaMotorcycle(req, res, next) {
     });
 }
 
+function getMapUrl(req, res) {
+  var mapId = process.env.GOOGLE_MAPS_ID;
+  res.json({ id: mapId });
+}
+
 ////////////// CRUD Functions
 
 function getAllPosts(req, res) {
@@ -151,7 +155,8 @@ function deleteaPost(req, res) {
 };
 
 function updateSaved(req, res) {
-  Post.update({ _id: req.params.id }, { $set: { notes: req.body.note }}, function(err) {
+  Post.update({ _id: req.params.id }, { $set: { notes: req.body.note }}, function(err, saved) {
     if (err) throw err;
+    res.send(saved);
   });
 };
