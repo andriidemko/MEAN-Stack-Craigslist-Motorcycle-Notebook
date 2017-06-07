@@ -11,6 +11,9 @@
     "start": "node src/server/app.js",
     "test": "gulp test"
   },
+  "engines": {
+    "node": "6.10.3"
+  },
   "dependencies": {
     "body-parser": "~1.8.2",
     "bower": "^1.8.0",
