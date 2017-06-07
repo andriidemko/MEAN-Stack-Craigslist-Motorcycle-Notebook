@@ -16,6 +16,7 @@
                     <th>URL</th>
                     <th>Price</th>
                     <th>Date</th>
+                    <th>&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,7 @@
                     </td>
                     <td>{{l.price}}</td>
                     <td>{{l.postedAt.substring(0, 10)}}</td>
+                    <td><button type="button" class="btn btn-danger" ng-disabled="vm.userName==undefined" ng-click="deleteSaved(l._id)" data-dismiss="modal">Delete</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -68,8 +70,9 @@
               <td> {{vm.bike.postedAt.substring(0, 10)}}</td>
             </tr>
             <tr ng-show="vm.bike.mapUrl != null">
-              <th width="20%"><i class="fa fa-map-marker" aria-hidden="true"></i> Map</th>
-              <td><a href="{{vm.bike.mapUrl}}" target="_blank"> Google Maps Link <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+              <th width="20%" style="vertical-align:top;"><i class="fa fa-map-marker" aria-hidden="true"></i> Map</th>
+              <td><a href="{{vm.bike.mapUrl}}" target="_blank">Open in Google Maps <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                  <br><a ng-show="vm.bike.mapUrl != null" ng-click="assembleMap(vm.bike.mapUrl)" target="_blank">Show Location <i class="fa fa-map" aria-hidden="true"></i></a></td>
             </tr>
             <tr ng-show="vm.bike.price != null">
               <th width="20%"><i class="fa fa-usd" aria-hidden="true"></i> Price</th>
@@ -85,11 +88,15 @@
               </td>
             </tr>
           </table>
+          <div ng-if="vm.bike.mapPic != null">
+            <p>&nbsp;</p>
+            <img src="{{vm.bike.mapPic}}" style="width: 100%; height: auto;" alt="Map of general area of listing." class="img-thumbnail">
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" ng-disabled="vm.userName==undefined" ng-click="updateNotes(vm.bike._id, vm.bike.notes)" data-dismiss="modal">Save</button>
-          <button type="submit" class="btn btn-danger" ng-disabled="vm.userName==undefined" ng-click="deleteSaved(vm.bike._id)" data-dismiss="modal">Delete</button>
+          <button type="button" class="btn btn-primary" ng-disabled="vm.userName==undefined" ng-click="updateNotes(vm.bike._id, vm.bike.notes)" data-dismiss="modal">Save</button>
+          <button type="button" class="btn btn-danger" ng-disabled="vm.userName==undefined" ng-click="deleteSaved(vm.bike._id)" data-dismiss="modal">Delete</button>
         </div>
       </div>
     </div>

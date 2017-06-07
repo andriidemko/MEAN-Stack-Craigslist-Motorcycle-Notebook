@@ -2,9 +2,9 @@
   <section class="matter">
     <div class="container">
       <div class="row text-center">
-        <form>
+        <form ng-submit="searchListings()">
           <input type="text" class="form-control" placeholder="Search for..." ng-model="motorcycle">
-          <button class="btn btn-default" type="button" ng-click="searchListings()">Submit</button>
+          <button class="btn btn-default" type="submit">Submit</button>
         </form>
       </div>
       <div class="row">
@@ -78,13 +78,18 @@
             </tr>
             <tr ng-show="vm.detail.mapUrl != ''">
               <th width="20%"><i class="fa fa-map-marker" aria-hidden="true"></i> Map</th>
-              <td><a href="{{vm.detail.mapUrl}}" target="_blank"> Google Maps Link <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+              <td><a href="{{vm.detail.mapUrl}}" target="_blank">Open in Google Maps <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                  <br><a ng-show="vm.detail.mapUrl != null" ng-click="assembleMap(vm.detail.mapUrl)" target="_blank">Show Location <i class="fa fa-map" aria-hidden="true"></i></a></td>
             </tr>
             <tr ng-show="vm.detail.price != ''">
               <th width="20%"><i class="fa fa-usd" aria-hidden="true"></i> Price</th>
               <td> {{vm.detail.price}}</td>
             </tr>
           </table>
+          <div ng-if="vm.detail.mapPic != null">
+            <p>&nbsp;</p>
+            <img src="{{vm.detail.mapPic}}" style="width: 100%; height: auto;" alt="Map of general area of listing." class="img-thumbnail">
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

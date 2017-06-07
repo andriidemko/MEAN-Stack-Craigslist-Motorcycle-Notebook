@@ -59,5 +59,24 @@
       logger.info('Saved Post Note.');
     }
 
+    $scope.assembleMap = function(url) {
+      var mapId = '';
+      $http.get('/api/map').then(function(payload) {
+        mapId = payload.data;
+        return mapId;
+      }).then(function(mapId) {
+        var regex1 = new RegExp('@(.*),(.*),');
+        var regex2 = new RegExp('[^=]*$');
+        var coords1 = url.match(regex1);
+        var coords2 = url.match(regex2);
+        if (coords1) {
+          vm.bike.mapPic = 'https://maps.googleapis.com/maps/api/staticmap?center=' + coords1[1] + ',' + coords1[2] + '&zoom=12&size=568x225&maptype=roadmap&key=' + mapId.id;
+        } else {
+          vm.bike.mapPic = 'https://maps.googleapis.com/maps/api/staticmap?center=' + coords2[1] + ',' + coords2[2] + '&zoom=12&size=568x225&maptype=roadmap&key=' + mapId.id;
+        }
+        return vm.bike.mapPic;
+      });
+    }
+
   }
 })();

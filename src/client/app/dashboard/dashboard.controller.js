@@ -17,9 +17,6 @@
     vm.title = 'New Listings';
     vm.detail = {};
 
-    // var map = 'https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=14&size=568x225&maptype=roadmap&key=YOUR_API_KEY'
-
-
     activate();
 
     function activate() {
@@ -37,11 +34,6 @@
       });
       return clservice.getPost(url).then(function(data) {
         vm.detail = data;
-        var mapApiUrl = '';
-        if (vm.detail.mapUrl != null) {
-          mapApiUrl = assembleMap(vm.detail.mapUrl);
-          vm.detail.mapPic = mapApiUrl;
-        }
         vm.detail.category = cat;
         vm.detail.price = price;
         vm.detail.authenticatedUser = vm.userName;
@@ -68,26 +60,23 @@
       return true;
     }
 
-    function assembleMap(url) {
-      var regex1 = new RegExp('@(.*),(.*),');
-      var regex2 = new RegExp('[^=]*$');
-      var coords1 = url.match(regex1);
-      var coords2 = url.match(regex2);
-      var promise = $http.get('/api/map');
-      var mapId = {};
-      promise.then(function(payload) {
-        $scope.mapId = payload.data;
-        return $scope.mapId;
-        console.log($scope.mapId);
+    $scope.assembleMap = function(url) {
+      var mapId = '';
+      $http.get('/api/map').then(function(payload) {
+        mapId = payload.data;
+        return mapId;
+      }).then(function(mapId) {
+        var regex1 = new RegExp('@(.*),(.*),');
+        var regex2 = new RegExp('[^=]*$');
+        var coords1 = url.match(regex1);
+        var coords2 = url.match(regex2);
+        if (coords1) {
+          vm.detail.mapPic = 'https://maps.googleapis.com/maps/api/staticmap?center=' + coords1[1] + ',' + coords1[2] + '&zoom=12&size=568x225&maptype=roadmap&key=' + mapId.id;
+        } else {
+          vm.detail.mapPic = 'https://maps.googleapis.com/maps/api/staticmap?center=' + coords2[1] + ',' + coords2[2] + '&zoom=12&size=568x225&maptype=roadmap&key=' + mapId.id;
+        }
+        return vm.detail.mapPic;
       });
-
-      if (coords1) {
-        var map = 'https://maps.googleapis.com/maps/api/staticmap?center=' + coords1[0] + '&zoom=14&size=568x225&maptype=roadmap&key=';
-      } else {
-        var map = 'https://maps.googleapis.com/maps/api/staticmap?center=' + coords2 + '&zoom=14&size=568x225&maptype=roadmap&key=';
-      }
-      console.log(map);
-      return map;
     }
 
   }
