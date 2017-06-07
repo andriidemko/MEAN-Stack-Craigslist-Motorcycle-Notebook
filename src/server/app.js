@@ -16,7 +16,11 @@ var port = process.env.PORT || 8001;
 var four0four = require('./utils/404')();
 var environment = process.env.NODE_ENV;
 
-mongoose.connect('mongodb://localhost/craigslistMoto');
+// mongoose.connect('mongodb://localhost/craigslistMoto');
+var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
+                replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@ds119788.mlab.com:19788/treehouse-capstone', options);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
