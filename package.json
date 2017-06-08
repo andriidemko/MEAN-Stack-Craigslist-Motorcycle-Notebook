@@ -6,10 +6,8 @@
   "license": "ISC",
   "scripts": {
     "init": "npm install",
-    "install": "bower install --force",
-    "postinstall": "webdriver-manager update",
-    "start": "node src/server/app.js",
-    "test": "gulp test"
+    "install": "bower install",
+    "start": "node src/server/app.js"
   },
   "engines": {
     "node": "6.10.3"

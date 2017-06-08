@@ -1,5 +1,5 @@
 {
-  "name": "phillyMotoCraigslist",
+  "name": "phillymotocraigslist",
   "version": "0.0.1",
   "description": "phillyMotoCraigslist",
   "authors": [],
@@ -13,12 +13,12 @@
   ],
   "devDependencies": {
     "angular-mocks": "~1.5.9",
-    "sinon": "http://sinonjs.org/releases/sinon-1.17.7.js",
+    "sinon": "http://sinonjs.org/releases/sinon-1.15.4.js",
     "bardjs": "~0.1.8"
   },
   "dependencies": {
     "jquery": "~2.2.2",
-    "angular": "~1.5",
+    "angular": "~1.6.4",
     "angular-animate": "~1.5.9",
     "angular-sanitize": "~1.5.9",
     "bootstrap": "~3.3.6",
@@ -31,7 +31,8 @@
     "ng-cookies": "^1.1.1"
   },
   "resolutions": {
-    "angular": "~1.5.9"
+    "angular": "~1.5.9",
+    "sinon": "~1.15.0"
   },
   "overrides": {
     "bootstrap": {
