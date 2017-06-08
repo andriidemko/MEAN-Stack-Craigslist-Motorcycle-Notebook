@@ -16,7 +16,10 @@ var port = process.env.PORT || 8001;
 var four0four = require('./utils/404')();
 var environment = process.env.NODE_ENV;
 
+// Use this for a local MongoDB Instance
 // mongoose.connect('mongodb://localhost/craigslistMoto');
+
+// I'm using these next four lines for a MongoDB hosted at MLab
 var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
                 replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
 mongoose.Promise = global.Promise;
