@@ -1,7 +1,5 @@
 # phillyMotoCraigslist
 
-**Generated from HotTowel Angular**
-
 >This is my Treehouse Full Stack Dev certificate capstone demo. You can see a working version of this on [YouTube](https://youtu.be/v0DUT5olGbk).
 
 ### Installing Packages
