@@ -8,7 +8,6 @@
 You should run these commands in order to install dependent libraries/packages.
 
  - `npm install`
- - `bower install`
 
 ### Start Up
 Type the following command to get it up an running after starting your Mongo database and shell...
