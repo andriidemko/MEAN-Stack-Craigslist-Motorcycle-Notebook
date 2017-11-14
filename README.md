@@ -2,6 +2,8 @@
 
 >This was my Treehouse Full Stack Dev certificate capstone demo. You can see a working version of this on [YouTube](https://youtu.be/v0DUT5olGbk).
 
+This is a MEAN stack app (MongoDB, ExpressJS, AngularJS, NodeJS) that searches Philadelphia Craigslist motorcycle listings, saves listings, and allows a user to annotate listings. It doesn't have to be for the Philly area, nor limited to motorcycle listings. I just happen to live in the Philly area and like motorcycles. It was a no-brainer when creating my Capstone project for my Treehouse capstone project. You can pretty much configure this for just about anything and anywhere when perusing Craigslist.
+
 ### Installing Packages
 You should run these commands in order to install dependent libraries/packages.
 
