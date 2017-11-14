@@ -15,7 +15,7 @@ Type the following command to get it up an running after starting your Mongo dat
 ### Major Libraries Used
 I used the the following libraries for the heavy listing for the app. On the UI side, I used John Papa's ["Hot Towel"](https://github.com/johnpapa/generator-hottowel) Angular starter using a Yeoman Generator. And I also used Joshua Thomas' [Craiglist Search Driver](https://www.npmjs.com/package/node-craigslist) for Node, because CL doesn't have an API.
 
-The Hot Towel and Craigslist Search Driver are both well annotated. I would recommend perusing the documentation in order to customize and/or expanding on this project.
+The Hot Towel and Craigslist Search Driver are both well annotated. I would recommend perusing the documentation in order to customize and/or expand on this project.
 
 ### Sample ENV file
 There is a sample environment file with slots for Github and Google credentials. This file should be filed out with the appropriate information and saved as ".env" in the root of your project, at the same level as the package.json. API credentials required...
