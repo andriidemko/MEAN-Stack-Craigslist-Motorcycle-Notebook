@@ -18,4 +18,8 @@ I used the the following libraries for the heavy listing for the app. On the UI 
 The Hot Towel and Craigslist Search Driver are both well annotated. I would recommend perusing the documentation in order to customize and/or expanding on this project.
 
 ### Sample ENV file
-There is a sample environment file with slots for Github and Google credentials. This file should be filed out with the appropriate information and saved as ".env" in the root of your project, at the same level as the package.json.
+There is a sample environment file with slots for Github and Google credentials. This file should be filed out with the appropriate information and saved as ".env" in the root of your project, at the same level as the package.json. API credentials required...
+
+* Github
+* Google
+* Google Maps
