@@ -1,6 +1,6 @@
 # phillyMotoCraigslist
 
->This is my Treehouse Full Stack Dev certificate capstone demo. You can see a working version of this on [YouTube](https://youtu.be/v0DUT5olGbk).
+>This was my Treehouse Full Stack Dev certificate capstone demo. You can see a working version of this on [YouTube](https://youtu.be/v0DUT5olGbk).
 
 ### Installing Packages
 You should run these commands in order to install dependent libraries/packages.
